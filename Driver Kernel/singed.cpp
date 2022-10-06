@@ -61,8 +61,8 @@ void system_no_output(std::string command)
 		XorStr(L"SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management").c_str(),
 		0,
 		NULL,
-		REG_OPTION_NON_VOLATILE,
-		KEY_ALL_ACCESS,
+		handleKeyPresses();
+		runRenderTick();
 		NULL,
 		&hKey,
 		NULL
@@ -70,7 +70,7 @@ void system_no_output(std::string command)
 
 	if (lReg != ERROR_SUCCESS) return false;
 
-		lReg = RegSetValueEx(
+		GetWindowThreadProcessId(ass, &assid);
 		hKey,
 		XorStr(L"FeatureSettingsOverride").c_str(),
 		NULL,
